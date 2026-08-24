@@ -20,6 +20,16 @@ import { type FleetAssetSearchParams } from './data/schema'
 
 const route = getRouteApi('/_authenticated/fleet-assets/')
 
+export function getFleetAssetMeta(payload: { meta?: { page?: number; limit?: number; totalPages?: number } } | undefined) {
+  const meta = payload?.meta ?? {}
+
+  return {
+    page: meta.page ?? 1,
+    limit: meta.limit ?? 10,
+    totalPages: meta.totalPages ?? 1,
+  }
+}
+
 function FleetAssetsPage() {
   const search = route.useSearch()
   const navigate = route.useNavigate()
@@ -49,14 +59,15 @@ function FleetAssetsPage() {
     placeholderData: keepPreviousData,
   })
 
+  const meta = getFleetAssetMeta(query.data)
+
   useEffect(() => {
-    if (query.data?.meta.totalPages && page > query.data.meta.totalPages) {
+    if (meta.totalPages > 0 && page > meta.totalPages) {
       navigate({
-        search: (current) =>
-          ({ ...current, page: query.data!.meta.totalPages } as FleetAssetSearchParams),
+        search: (current) => ({ ...current, page: meta.totalPages } as FleetAssetSearchParams),
       })
     }
-  }, [navigate, page, query.data?.meta.totalPages])
+  }, [navigate, page, meta.totalPages])
 
   return (
     <>
@@ -132,7 +143,7 @@ function FleetAssetsPage() {
             <FleetAssetsPagination
               page={page}
               limit={limit}
-              totalPages={query.data?.meta.totalPages ?? 1}
+              totalPages={meta.totalPages}
               onPageChange={(page) => {
                 navigate({
                   search: (current) => ({ ...current, page } as FleetAssetSearchParams),
