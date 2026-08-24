@@ -20,7 +20,19 @@ import { type FleetAssetSearchParams } from './data/schema'
 
 const route = getRouteApi('/_authenticated/fleet-assets/')
 
-export function getFleetAssetMeta(payload: { meta?: { page?: number; limit?: number; totalPages?: number } } | undefined) {
+export function getFleetAssetMeta(
+  payload:
+    | {
+        data?: unknown[]
+        meta?: {
+          page?: number
+          limit?: number
+          total?: number
+          totalPages?: number
+        }
+      }
+    | undefined
+) {
   const meta = payload?.meta ?? {}
 
   return {
