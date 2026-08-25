@@ -4,10 +4,15 @@
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
   ],
+  "exclude": [
+    "src/**/*.test.ts",
+    "src/**/*.test.tsx",
+    "src/**/*.spec.ts",
+    "src/**/*.spec.tsx"
+  ],
   "compilerOptions": {
     "paths": {
       "@/*": ["./src/*"]
-    },
-    "exclude": ["**/*.test.ts", "**/*.test.tsx", "src/**/*.test.ts"]
+    }
   }
 }
