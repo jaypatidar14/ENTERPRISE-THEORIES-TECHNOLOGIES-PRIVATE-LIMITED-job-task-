@@ -23,7 +23,7 @@ import { type FleetAssetSearchParams } from './data/schema'
 
 const route = getRouteApi('/_authenticated/fleet-assets/')
 
-export function getFleetAssetMeta(
+function getFleetAssetMeta(
   payload:
     | {
         data?: unknown[]

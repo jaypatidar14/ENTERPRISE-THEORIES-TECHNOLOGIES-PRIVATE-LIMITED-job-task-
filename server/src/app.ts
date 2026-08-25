@@ -1,17 +1,10 @@
-// @ts-expect-error Express type declarations are not installed in this project.
-import express from 'express'
+import express, { type Request, type Response } from 'express'
 import cors from 'cors'
 import { fleetAssetRoutes } from './routes/fleetAssetRoutes.js'
 import { errorHandler, notFoundHandler } from './middleware/errorHandler.js'
 
-interface HealthResponse {
+type HealthResponse = {
   ok: boolean
-}
-
-interface Request {}
-
-interface Response<T = unknown> {
-  json: (body: T) => void
 }
 
 export function createApp() {
