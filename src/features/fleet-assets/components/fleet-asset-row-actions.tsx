@@ -24,9 +24,16 @@ export function FleetAssetRowActions({ asset }: FleetAssetRowActionsProps) {
           <EllipsisVerticalIcon className='size-4' />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align='end' onClick={(event) => event.stopPropagation()}>
-        <DropdownMenuItem onSelect={() => openView(asset)}>View Asset</DropdownMenuItem>
-        <DropdownMenuItem onSelect={() => openEdit(asset)}>Edit Asset</DropdownMenuItem>
+      <DropdownMenuContent
+        align='end'
+        onClick={(event) => event.stopPropagation()}
+      >
+        <DropdownMenuItem onSelect={() => openView(asset)}>
+          View Asset
+        </DropdownMenuItem>
+        <DropdownMenuItem onSelect={() => openEdit(asset)}>
+          Edit Asset
+        </DropdownMenuItem>
         <DropdownMenuItem onSelect={() => openDelete(asset)}>
           Delete / Deactivate Asset
         </DropdownMenuItem>

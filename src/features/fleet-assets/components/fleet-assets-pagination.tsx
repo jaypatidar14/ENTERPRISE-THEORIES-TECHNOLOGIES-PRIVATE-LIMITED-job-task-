@@ -6,7 +6,13 @@ import {
 } from '@radix-ui/react-icons'
 import { cn, getPageNumbers } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 
 type FleetAssetsPaginationProps = {
   page: number
@@ -38,7 +44,10 @@ export function FleetAssetsPagination({
           Page {page} of {totalPages}
         </div>
         <div className='flex items-center gap-2 @max-2xl/content:flex-row-reverse'>
-          <Select value={`${limit}`} onValueChange={(value) => onLimitChange(Number(value))}>
+          <Select
+            value={`${limit}`}
+            onValueChange={(value) => onLimitChange(Number(value))}
+          >
             <SelectTrigger className='h-8 w-17.5'>
               <SelectValue placeholder={limit} />
             </SelectTrigger>

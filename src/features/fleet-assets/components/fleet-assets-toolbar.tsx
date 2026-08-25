@@ -8,16 +8,20 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import {
   fleetAssetBrands,
   fleetAssetSortOptions,
   fleetAssetStatuses,
   fleetAssetTypes,
 } from '../data/constants'
-import {
-  type FleetAssetSearchParams,
-} from '../data/schema'
+import { type FleetAssetSearchParams } from '../data/schema'
 import { useFleetAssets } from './fleet-assets-provider'
 
 type FleetAssetsToolbarProps = {
@@ -94,7 +98,9 @@ export function FleetAssetsToolbar({
               <Select
                 value={draftAssetType}
                 onValueChange={(value) =>
-                  setDraftAssetType(value as FleetAssetSearchParams['assetType'])
+                  setDraftAssetType(
+                    value as FleetAssetSearchParams['assetType']
+                  )
                 }
               >
                 <SelectTrigger>

@@ -1,19 +1,22 @@
 import { useEffect } from 'react'
-import { getRouteApi } from '@tanstack/react-router'
 import { keepPreviousData, useQuery } from '@tanstack/react-query'
+import { getRouteApi } from '@tanstack/react-router'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent } from '@/components/ui/card'
+import { Skeleton } from '@/components/ui/skeleton'
 import { ConfigDrawer } from '@/components/config-drawer'
 import { Header } from '@/components/layout/header'
 import { Main } from '@/components/layout/main'
 import { ProfileDropdown } from '@/components/profile-dropdown'
 import { Search } from '@/components/search'
 import { ThemeSwitch } from '@/components/theme-switch'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent } from '@/components/ui/card'
-import { Skeleton } from '@/components/ui/skeleton'
 import { getFleetAssets } from './api/fleet-assets'
 import { FleetAssetsDialogs } from './components/fleet-assets-dialogs'
 import { FleetAssetsPagination } from './components/fleet-assets-pagination'
-import { FleetAssetsProvider, useFleetAssets } from './components/fleet-assets-provider'
+import {
+  FleetAssetsProvider,
+  useFleetAssets,
+} from './components/fleet-assets-provider'
 import { FleetAssetsTable } from './components/fleet-assets-table'
 import { FleetAssetsToolbar } from './components/fleet-assets-toolbar'
 import { type FleetAssetSearchParams } from './data/schema'
@@ -76,7 +79,8 @@ function FleetAssetsPage() {
   useEffect(() => {
     if (meta.totalPages > 0 && page > meta.totalPages) {
       navigate({
-        search: (current) => ({ ...current, page: meta.totalPages } as FleetAssetSearchParams),
+        search: (current) =>
+          ({ ...current, page: meta.totalPages }) as FleetAssetSearchParams,
       })
     }
   }, [navigate, page, meta.totalPages])
@@ -93,8 +97,12 @@ function FleetAssetsPage() {
       <Main className='flex flex-1 flex-col gap-4 sm:gap-6'>
         <div className='flex flex-wrap items-end justify-between gap-2'>
           <div>
-            <h2 className='text-2xl font-bold tracking-tight'>Fleet Asset Master</h2>
-            <p className='text-muted-foreground'>Manage tyre assets, filters, and maintenance records.</p>
+            <h2 className='text-2xl font-bold tracking-tight'>
+              Fleet Asset Master
+            </h2>
+            <p className='text-muted-foreground'>
+              Manage tyre assets, filters, and maintenance records.
+            </p>
           </div>
           <Button onClick={openAdd}>+ Add Asset</Button>
         </div>
@@ -113,7 +121,7 @@ function FleetAssetsPage() {
                   ...current,
                   page: 1,
                   search: value,
-                } as FleetAssetSearchParams),
+                }) as FleetAssetSearchParams,
             })
           }}
           onFiltersChange={({ status, brand, assetType }) => {
@@ -125,7 +133,7 @@ function FleetAssetsPage() {
                   status,
                   brand,
                   assetType,
-                } as FleetAssetSearchParams),
+                }) as FleetAssetSearchParams,
             })
           }}
           onSortChange={(sort, order) => {
@@ -136,7 +144,7 @@ function FleetAssetsPage() {
                   page: 1,
                   sort,
                   order,
-                } as FleetAssetSearchParams),
+                }) as FleetAssetSearchParams,
             })
           }}
         />
@@ -158,12 +166,14 @@ function FleetAssetsPage() {
               totalPages={meta.totalPages}
               onPageChange={(page) => {
                 navigate({
-                  search: (current) => ({ ...current, page } as FleetAssetSearchParams),
+                  search: (current) =>
+                    ({ ...current, page }) as FleetAssetSearchParams,
                 })
               }}
               onLimitChange={(limit) => {
                 navigate({
-                  search: (current) => ({ ...current, page: 1, limit } as FleetAssetSearchParams),
+                  search: (current) =>
+                    ({ ...current, page: 1, limit }) as FleetAssetSearchParams,
                 })
               }}
             />

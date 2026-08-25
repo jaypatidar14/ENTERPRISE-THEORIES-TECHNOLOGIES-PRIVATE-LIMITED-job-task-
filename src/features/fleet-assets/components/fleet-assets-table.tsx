@@ -61,7 +61,9 @@ export function FleetAssetsTable({ data }: FleetAssetsTableProps) {
                     {asset.status}
                   </Badge>
                 </TableCell>
-                <TableCell>{format(new Date(asset.createdAt), 'dd-MMM-yyyy')}</TableCell>
+                <TableCell>
+                  {format(new Date(asset.createdAt), 'dd-MMM-yyyy')}
+                </TableCell>
                 <TableCell className='text-end'>
                   <div onClick={(event) => event.stopPropagation()}>
                     <FleetAssetRowActions asset={asset} />

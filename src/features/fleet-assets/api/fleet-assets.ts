@@ -19,7 +19,10 @@ export async function createFleetAsset(values: FleetAssetFormValues) {
   return data
 }
 
-export async function updateFleetAsset(id: string, values: FleetAssetFormValues) {
+export async function updateFleetAsset(
+  id: string,
+  values: FleetAssetFormValues
+) {
   const { data } = await api.put<FleetAsset>(`/api/fleet-assets/${id}`, values)
   return data
 }

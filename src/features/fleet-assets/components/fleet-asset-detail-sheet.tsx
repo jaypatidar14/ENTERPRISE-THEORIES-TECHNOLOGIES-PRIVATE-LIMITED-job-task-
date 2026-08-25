@@ -8,12 +8,7 @@ import {
   SheetHeader,
   SheetTitle,
 } from '@/components/ui/sheet'
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from '@/components/ui/tabs'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { type FleetAsset } from '../data/schema'
 
 type FleetAssetDetailSheetProps = {
@@ -22,7 +17,13 @@ type FleetAssetDetailSheetProps = {
   onOpenChange: (open: boolean) => void
 }
 
-function DetailRow({ label, value }: { label: string; value: React.ReactNode }) {
+function DetailRow({
+  label,
+  value,
+}: {
+  label: string
+  value: React.ReactNode
+}) {
   return (
     <div className='flex items-start justify-between gap-4 rounded-md border p-3'>
       <span className='text-sm text-muted-foreground'>{label}</span>
@@ -31,7 +32,11 @@ function DetailRow({ label, value }: { label: string; value: React.ReactNode }) 
   )
 }
 
-export function FleetAssetDetailSheet({ asset, open, onOpenChange }: FleetAssetDetailSheetProps) {
+export function FleetAssetDetailSheet({
+  asset,
+  open,
+  onOpenChange,
+}: FleetAssetDetailSheetProps) {
   if (!asset) return null
 
   return (
@@ -49,7 +54,9 @@ export function FleetAssetDetailSheet({ asset, open, onOpenChange }: FleetAssetD
             <Badge variant='outline'>{asset.assetType}</Badge>
             <Badge
               variant='outline'
-              className={asset.status === 'Active' ? 'text-emerald-700' : 'text-zinc-700'}
+              className={
+                asset.status === 'Active' ? 'text-emerald-700' : 'text-zinc-700'
+              }
             >
               {asset.status}
             </Badge>
@@ -69,17 +76,44 @@ export function FleetAssetDetailSheet({ asset, open, onOpenChange }: FleetAssetD
                 <DetailRow label='Status' value={asset.status} />
                 <DetailRow label='Description' value={asset.description} />
                 <Separator className='my-4' />
-                <DetailRow label='Created Date' value={format(new Date(asset.createdAt), 'dd-MMM-yyyy')} />
-                <DetailRow label='Updated Date' value={format(new Date(asset.updatedAt), 'dd-MMM-yyyy')} />
+                <DetailRow
+                  label='Created Date'
+                  value={format(new Date(asset.createdAt), 'dd-MMM-yyyy')}
+                />
+                <DetailRow
+                  label='Updated Date'
+                  value={format(new Date(asset.updatedAt), 'dd-MMM-yyyy')}
+                />
               </TabsContent>
               <TabsContent value='specs' className='space-y-3 p-3'>
-                <DetailRow label='Tyre Size' value={asset.tyreSpecifications.tyreSize} />
-                <DetailRow label='Construction' value={asset.tyreSpecifications.construction} />
-                <DetailRow label='Pattern' value={asset.tyreSpecifications.pattern} />
-                <DetailRow label='Load Index' value={asset.tyreSpecifications.loadIndex} />
-                <DetailRow label='Speed Rating' value={asset.tyreSpecifications.speedRating} />
-                <DetailRow label='Ply Rating' value={asset.tyreSpecifications.plyRating} />
-                <DetailRow label='Tube Type' value={asset.tyreSpecifications.tubeType} />
+                <DetailRow
+                  label='Tyre Size'
+                  value={asset.tyreSpecifications.tyreSize}
+                />
+                <DetailRow
+                  label='Construction'
+                  value={asset.tyreSpecifications.construction}
+                />
+                <DetailRow
+                  label='Pattern'
+                  value={asset.tyreSpecifications.pattern}
+                />
+                <DetailRow
+                  label='Load Index'
+                  value={asset.tyreSpecifications.loadIndex}
+                />
+                <DetailRow
+                  label='Speed Rating'
+                  value={asset.tyreSpecifications.speedRating}
+                />
+                <DetailRow
+                  label='Ply Rating'
+                  value={asset.tyreSpecifications.plyRating}
+                />
+                <DetailRow
+                  label='Tube Type'
+                  value={asset.tyreSpecifications.tubeType}
+                />
               </TabsContent>
             </Tabs>
           </div>

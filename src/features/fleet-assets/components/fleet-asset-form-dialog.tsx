@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import { AxiosError } from 'axios'
+import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { handleServerError } from '@/lib/handle-server-error'
 import { Button } from '@/components/ui/button'
@@ -25,6 +25,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { SelectDropdown } from '@/components/select-dropdown'
+import { createFleetAsset, updateFleetAsset } from '../api/fleet-assets'
 import {
   fleetAssetStatuses,
   fleetAssetTypes,
@@ -36,10 +37,6 @@ import {
   type FleetAsset,
   type FleetAssetFormValues,
 } from '../data/schema'
-import {
-  createFleetAsset,
-  updateFleetAsset,
-} from '../api/fleet-assets'
 import { useFleetAssets } from './fleet-assets-provider'
 
 type FleetAssetFormDialogProps = {
@@ -169,7 +166,9 @@ export function FleetAssetFormDialog({
     >
       <DialogContent className='max-h-[92vh] overflow-hidden sm:max-w-4xl'>
         <DialogHeader>
-          <DialogTitle>{isEdit ? 'Edit Fleet Asset' : 'Add Fleet Asset'}</DialogTitle>
+          <DialogTitle>
+            {isEdit ? 'Edit Fleet Asset' : 'Add Fleet Asset'}
+          </DialogTitle>
           <DialogDescription>
             Capture tyre asset details and specification data here.
           </DialogDescription>
@@ -177,7 +176,11 @@ export function FleetAssetFormDialog({
 
         <div className='max-h-[72vh] overflow-y-auto pe-3'>
           <Form {...form}>
-            <form id='fleet-asset-form' onSubmit={form.handleSubmit(onSubmit)} className='space-y-6'>
+            <form
+              id='fleet-asset-form'
+              onSubmit={form.handleSubmit(onSubmit)}
+              className='space-y-6'
+            >
               <div className='grid gap-4 lg:grid-cols-2'>
                 <div className='space-y-4 rounded-lg border p-4'>
                   <h3 className='text-base font-semibold'>Basic Information</h3>
@@ -287,7 +290,10 @@ export function FleetAssetFormDialog({
                       <FormItem>
                         <FormLabel>Description</FormLabel>
                         <FormControl>
-                          <Textarea placeholder='Optional note about the tyre asset.' {...field} />
+                          <Textarea
+                            placeholder='Optional note about the tyre asset.'
+                            {...field}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -296,7 +302,9 @@ export function FleetAssetFormDialog({
                 </div>
 
                 <div className='space-y-4 rounded-lg border p-4'>
-                  <h3 className='text-base font-semibold'>Tyre Specifications</h3>
+                  <h3 className='text-base font-semibold'>
+                    Tyre Specifications
+                  </h3>
 
                   <FormField
                     control={form.control}
@@ -416,7 +424,11 @@ export function FleetAssetFormDialog({
         </div>
 
         <DialogFooter>
-          <Button type='submit' form='fleet-asset-form' disabled={mutation.isPending}>
+          <Button
+            type='submit'
+            form='fleet-asset-form'
+            disabled={mutation.isPending}
+          >
             {mutation.isPending ? 'Saving...' : 'Save changes'}
           </Button>
         </DialogFooter>

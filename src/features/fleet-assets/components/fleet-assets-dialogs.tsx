@@ -1,8 +1,8 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
-import { ConfirmDialog } from '@/components/confirm-dialog'
 import { handleServerError } from '@/lib/handle-server-error'
+import { ConfirmDialog } from '@/components/confirm-dialog'
 import { deleteFleetAsset } from '../api/fleet-assets'
 import { FleetAssetDetailSheet } from './fleet-asset-detail-sheet'
 import { FleetAssetFormDialog } from './fleet-asset-form-dialog'
@@ -65,12 +65,14 @@ export function FleetAssetsDialogs() {
           title='Delete / Deactivate Asset'
           desc={
             <span>
-              Deactivate <strong>{currentAsset.assetCode}</strong>? The asset will
-              remain in the system but will be marked inactive.
+              Deactivate <strong>{currentAsset.assetCode}</strong>? The asset
+              will remain in the system but will be marked inactive.
             </span>
           }
           destructive
-          confirmText={deleteMutation.isPending ? 'Deactivating...' : 'Deactivate'}
+          confirmText={
+            deleteMutation.isPending ? 'Deactivating...' : 'Deactivate'
+          }
           isLoading={deleteMutation.isPending}
           handleConfirm={() => deleteMutation.mutate()}
         />

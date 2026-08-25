@@ -16,9 +16,10 @@ const fleetAssetStatusValues = fleetAssetStatuses.map((item) => item.value) as [
 const tyreConstructionValues = tyreConstructionOptions.map(
   (item) => item.value
 ) as ['Radial', 'Bias', 'Diagonal']
-const tyreTubeTypeValues = tyreTubeTypeOptions.map(
-  (item) => item.value
-) as ['Tubeless', 'Tube Type']
+const tyreTubeTypeValues = tyreTubeTypeOptions.map((item) => item.value) as [
+  'Tubeless',
+  'Tube Type',
+]
 
 export const fleetAssetFormSchema = z.object({
   assetCode: z.string().min(1, 'Asset Code is required.'),
@@ -60,7 +61,10 @@ export const fleetAssetSearchSchema = z.object({
     ])
     .optional()
     .catch('All'),
-  assetType: z.union([z.literal('All'), z.literal('Tyre')]).optional().catch('All'),
+  assetType: z
+    .union([z.literal('All'), z.literal('Tyre')])
+    .optional()
+    .catch('All'),
   sort: z
     .union([
       z.literal('assetName'),
@@ -69,14 +73,18 @@ export const fleetAssetSearchSchema = z.object({
     ])
     .optional()
     .catch('createdAt'),
-  order: z.union([z.literal('asc'), z.literal('desc')]).optional().catch('desc'),
+  order: z
+    .union([z.literal('asc'), z.literal('desc')])
+    .optional()
+    .catch('desc'),
 })
 
 export type FleetAssetSearchParams = z.infer<typeof fleetAssetSearchSchema>
 
 export type FleetAssetStatus = (typeof fleetAssetStatuses)[number]['value']
 export type FleetAssetType = (typeof fleetAssetTypes)[number]['value']
-export type FleetAssetConstruction = (typeof tyreConstructionOptions)[number]['value']
+export type FleetAssetConstruction =
+  (typeof tyreConstructionOptions)[number]['value']
 export type FleetAssetTubeType = (typeof tyreTubeTypeOptions)[number]['value']
 
 export type FleetAsset = {
