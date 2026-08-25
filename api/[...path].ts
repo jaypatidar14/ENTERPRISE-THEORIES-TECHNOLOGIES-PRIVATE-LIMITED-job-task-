@@ -16,7 +16,7 @@ function initializeDatabase() {
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
     await initializeDatabase()
-    app(req, res)
+    return app(req, res)
   } catch (error) {
     res.status(500).json({
       message: error instanceof Error ? error.message : 'Database connection failed.',
